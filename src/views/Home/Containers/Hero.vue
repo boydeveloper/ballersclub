@@ -3,17 +3,17 @@
     <div class="container">
       <div class="hero">
         <div class="hero-textbox">
-          <strong>A community of ballers.</strong>
+          <strong>A community of bubblegoose ballers.</strong>
           <h1>
             Discover the World of art on <br />
-            Bubblegoose.
+            BallersClub.
           </h1>
           <p>
             Updated collections of the BubbleGoose community Hub for
             creative,<br />
             experienced and beginner ballers.
           </p>
-          <router-link to="/" class="hero-btn">Get Started</router-link>
+          <router-link to="/" class="primary-btn">Get Started</router-link>
         </div>
         <div class="hero-img-box">
           <img
@@ -58,7 +58,10 @@ export default {
 }
 .hero {
   display: flex;
+  height: 80vh;
   gap: 9rem;
+  max-width: 120rem;
+  margin: 0 auto;
 }
 .hero-textbox {
   padding-top: 5rem;
@@ -67,7 +70,7 @@ export default {
   font-size: 4.5rem;
   letter-spacing: 0.3rem;
   margin-bottom: 2rem;
-  color: var(--color-white);
+  color: #120d18;
   text-shadow: 2px 0 var(--primary-color), -2px 0 var(--primary-color),
     0 2px var(--primary-color), 0 -2px var(--primary-color),
     1px 1px var(--primary-color), -1px -1px var(--primary-color),
@@ -78,19 +81,7 @@ export default {
   margin-bottom: 2rem;
   font-weight: 500;
 }
-.hero-btn:link,
-.hero-btn:visited {
-  text-decoration: none;
-  color: var(--primary-color);
-  padding: 1.4rem 1.8rem;
-  display: inline-block;
-  border: 0.2rem solid var(--primary-color);
-  border-radius: 5rem;
-  transition: opactity 0.3s;
-}
-.hero-btn:hover {
-  opacity: 0.8;
-}
+
 .hero-img-box {
   padding: 0 5rem;
   position: relative;
@@ -119,13 +110,34 @@ export default {
   height: 9rem;
   width: 14rem;
   position: absolute;
-  bottom: -2rem;
+  top: 20rem;
   right: 0;
 }
 .gem {
   position: absolute;
   left: 0;
-  bottom: 2rem;
+  /* top: 9rem; */
   transform: rotate(-15deg);
+}
+@media (max-width: 1061px) {
+  .section-hero {
+    padding-top: 2rem;
+  }
+  .hero {
+    flex-direction: column;
+    gap: 4rem;
+  }
+  .hero-textbox {
+    padding-top: 3rem;
+  }
+  br {
+    display: none;
+  }
+
+  .hero-img {
+    max-width: 30rem;
+    object-fit: contain;
+    /* margin: 0 auto; */
+  }
 }
 </style>
