@@ -1,15 +1,11 @@
 <template>
   <div class="baller-card" v-for="data in ballerCardsData" id="data.id">
     <img src="../assets/imgs/gemstone.png" alt="gem stone" class="diamond" />
-    <img
-      :src="require(`../assets/imgs/${data.img}${data.id}.jpeg`)"
-      alt="baller img"
-      class="baller-img"
-    />
+    <img :src="data.ballerPhoto" alt="baller img" class="baller-img" />
     <div class="baller-details">
       <router-link to="/" class="baller-id">
         <ion-icon name="diamond"></ion-icon>
-        {{ data.ballerId }}
+        {{ data.username }}
       </router-link>
       <router-link to="/" class="baller-twitter">
         <ion-icon name="logo-twitter"></ion-icon>

@@ -9,6 +9,7 @@ import CreateBallerCard from '../features/Create/CreateBallerCard';
 import Login from '../features/auth/Login';
 import Signup from '../features/auth/Signup';
 import Forgotpassword from '../features/auth/Forgotpassword';
+import { getAuth } from 'firebase/auth';
 //
 const routes = [
   {
@@ -17,6 +18,7 @@ const routes = [
     component: Home,
     meta: {
       title: 'Home',
+      requiresAuth: false,
     },
   },
   {
@@ -25,6 +27,7 @@ const routes = [
     component: Mirror,
     meta: {
       title: 'Mirror',
+      requiresAuth: false,
     },
   },
   {
@@ -33,6 +36,7 @@ const routes = [
     component: Login,
     meta: {
       title: 'Login',
+      requiresAuth: false,
     },
   },
   {
@@ -41,6 +45,7 @@ const routes = [
     component: Signup,
     meta: {
       title: 'Signup',
+      requiresAuth: false,
     },
   },
   {
@@ -49,6 +54,7 @@ const routes = [
     component: Profile,
     meta: {
       title: 'Profile',
+      requiresAuth: true,
     },
   },
   {
@@ -57,6 +63,7 @@ const routes = [
     component: Forgotpassword,
     meta: {
       title: 'Fogotpassword',
+      requiresAuth: false,
     },
   },
   {
@@ -65,6 +72,7 @@ const routes = [
     component: CreateBallerCard,
     meta: {
       title: 'Create',
+      requiresAuth: true,
     },
   },
 ];
@@ -76,7 +84,19 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   document.title = `Ballersclub | ${to.meta.title}`;
-
   next();
 });
+
+router.beforeEach(async (to, from, next) => {
+  let user = getAuth().currentUser;
+
+  if (to.matched.some((res) => res.meta.requiresAuth)) {
+    if (user) {
+      return next();
+    }
+    return next({ name: 'Login' });
+  }
+  return next();
+});
+
 export default router;

@@ -1,31 +1,22 @@
-import { getAuth } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { async } from '@firebase/util';
+import { getAuth, updateProfile } from 'firebase/auth';
+import {
+  doc,
+  getDoc,
+  updateDoc,
+  getDocs,
+  collection,
+  query,
+  where,
+} from 'firebase/firestore';
 import { createStore } from 'vuex';
 import { db } from '../firebase/firebaseInit';
 export const store = createStore({
   state: {
-    ballerCardsData: [
-      {
-        id: 1,
-        ballerId: 'Zyzer91$',
-        img: 'bubble',
-        twitter: '@zyzer__dev',
-      },
-      {
-        id: 2,
-        ballerId: 'sexist9$',
-        img: 'bubble',
-        twitter: 'daniel__zx',
-      },
-      {
-        id: 3,
-        ballerId: 'damn98!',
-        img: 'bubble',
-        twitter: 'baller_99$',
-      },
-    ],
+    ballerCardsData: [],
     user: null,
     profileEmail: null,
+    twitterHandle: null,
     profileUsername: null,
     profileId: null,
     profileInitials: null,
@@ -41,8 +32,20 @@ export const store = createStore({
         state.profileUsername = doc.data().username;
       }
     },
+    async setBallerCards(state) {
+      const querySnapshot = await getDocs(collection(db, 'ballerCards'));
+
+      let cards = [];
+      querySnapshot.forEach((doc) => {
+        cards.push({ ...doc.data(), id: doc.id });
+        state.ballerCardsData = cards;
+      });
+    },
     setProfileInitials(state) {
       state.profileInitials = state.profileUsername.slice(0, 2);
+    },
+    changeUsername(state, payload) {
+      state.profileUsername = payload;
     },
   },
   actions: {
@@ -55,6 +58,32 @@ export const store = createStore({
         commit('setProfileInitials');
       } else {
         console.log('No such document!');
+      }
+    },
+    async updateUsername({ commit, state }) {
+      const auth = getAuth();
+      try {
+        if (auth.currentUser.username !== state.profileUsername) {
+          await updateProfile(auth.currentUser, {
+            username: state.profileUsername,
+          });
+          const usernameRef = doc(db, 'users', auth.currentUser.uid);
+          await updateDoc(usernameRef, {
+            username: state.profileUsername,
+          });
+        }
+        state.ballerCardsData.map(async (data) => {
+          if (data.email === state.profileEmail) {
+            const updateRef = doc(db, 'ballerCards', data.id);
+            await updateDoc(updateRef, {
+              username: state.profileUsername,
+            });
+          }
+        });
+        commit('setBallerCards');
+        await commit('setProfileInitials');
+      } catch (error) {
+        console.log(error.message);
       }
     },
   },

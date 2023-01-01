@@ -66,11 +66,15 @@ export default {
 .hero-textbox {
   padding-top: 5rem;
 }
+strong {
+  font-family: var(--bold-font);
+}
 .hero-textbox > h1 {
   font-size: 4.5rem;
   letter-spacing: 0.3rem;
   margin-bottom: 2rem;
   color: #120d18;
+  font-family: var(--bold-font);
   text-shadow: 2px 0 var(--primary-color), -2px 0 var(--primary-color),
     0 2px var(--primary-color), 0 -2px var(--primary-color),
     1px 1px var(--primary-color), -1px -1px var(--primary-color),
@@ -79,6 +83,7 @@ export default {
 .hero-textbox > p {
   font-size: 1.8rem;
   margin-bottom: 2rem;
+
   font-weight: 500;
 }
 

@@ -9,6 +9,9 @@
           <div class="profile-details">
             <p>PROFILE</p>
             <h1 class="username">
+              <form @submit.prevent="updateProfile">
+                <input type="text" v-model="username" />
+              </form>
               {{ this.$store.state.profileUsername }}
             </h1>
             <p>💎4 arts uploaded</p>
@@ -38,8 +41,19 @@ export default {
       auth.signOut();
       this.$router.push({ name: 'Home' });
     },
+    updateProfile() {
+      this.$store.dispatch('updateUsername');
+    },
   },
   computed: {
+    username: {
+      get() {
+        return this.$store.state.profileUsername;
+      },
+      set(payload) {
+        this.$store.commit('changeUsername', payload);
+      },
+    },
     ballerCardsData() {
       return this.$store.state.ballerCardsData;
     },

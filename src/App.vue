@@ -22,6 +22,7 @@ export default {
         this.$store.dispatch('getCurrentUser');
       }
     });
+    this.$store.commit('setBallerCards');
     this.checkRoute();
   },
   data() {
@@ -61,6 +62,7 @@ export default {
   --primary-color: #ff77f7;
   --dark: #120d18;
   --color-white: #fff;
+  --bold-font: 'Clash Grotesk', sans-serif;
 }
 html {
   font-size: 62.5%;
@@ -77,7 +79,8 @@ body {
   font-size: 1.6rem;
   min-height: 100vh;
   color: #fff;
-  font-family: 'Clash Grotesk', sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
 }
 .container {
   max-width: 120rem;
@@ -86,6 +89,7 @@ body {
 }
 .primary-heading {
   font-size: 3.5rem;
+  font-family: var(--bold-font);
   color: #120d18;
   text-shadow: 2px 0 var(--primary-color), -2px 0 var(--primary-color),
     0 2px var(--primary-color), 0 -2px var(--primary-color),
@@ -122,22 +126,22 @@ body {
   opacity: 0.8;
 }
 .form-wrap {
-  height: 100vh;
+  min-height: 100vh;
 }
-.form-wrap form {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  width: 50%;
-  padding: 5rem;
+.auth-link:link,
+.auth-link:visited {
+  color: rgb(227, 221, 221);
+  transition: color 0.3s;
 }
-.form-wrap input {
-  padding: 1.2rem;
+.auth-link:active,
+.auth-link:hover {
+  color: var(--primary-color);
 }
-.form-wrap button {
-  padding: 1.2rem;
+.form-heading {
+  font-family: var(--bold-font);
+  font-size: 3.5rem;
 }
 .error {
-  color: red;
+  color: #e03131;
 }
 </style>
