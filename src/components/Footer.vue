@@ -23,6 +23,7 @@ export default {
 
 <style scoped>
 .section-footer {
+  font-family: var(--bold-font);
   padding: 2rem 0;
   margin-top: auto;
   background-color: var(--primary-color);

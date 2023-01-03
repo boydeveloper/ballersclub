@@ -59,7 +59,6 @@ export default {
       email: '',
       password: '',
       error: null,
-      // wrongPassword: '',
       emailErrMsg: '',
       passwordErrMsg: '',
       pending: null,
@@ -73,9 +72,13 @@ export default {
       if (this.email.indexOf('.com') === -1)
         this.emailErrMsg = "Email is invalid: it must contain '.com'";
       if (this.password.length <= 7)
-        this.passwordMsg = 'Must contain at least 8 characters';
+        this.passwordMsg = 'Password mMust contain at least 8 characters';
     },
     async loginUser() {
+      setTimeout(() => {
+        this.emailErrMsg = '';
+        this.passwordErrMsg = '';
+      }, 4000);
       this.validate();
       try {
         if (
@@ -85,18 +88,14 @@ export default {
         ) {
           this.emailErrMsg = '';
           this.passwordErrMsg = '';
-          this.error = false;
-          this.errorMsg = '';
-          const auth = getAuth();
-          this.pending = true;
           this.message = 'Loading.....';
+          const auth = getAuth();
           await signInWithEmailAndPassword(auth, this.email, this.password);
           this.pending = false;
           this.$router.push({ name: 'Mirror' });
         }
       } catch (err) {
         this.message = 'Login';
-        console.log(err.message);
         if (err.message === 'Firebase: Error (auth/wrong-password).')
           this.passwordErrMsg = 'wrong password';
       }

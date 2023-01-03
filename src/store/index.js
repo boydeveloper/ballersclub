@@ -16,8 +16,9 @@ export const store = createStore({
     ballerCardsData: [],
     user: null,
     profileEmail: null,
-    twitterHandle: null,
-    profileUsername: null,
+    twitterHandle: '',
+    profileUsername: '',
+    profileName: '',
     profileId: null,
     profileInitials: null,
   },
@@ -29,12 +30,12 @@ export const store = createStore({
       if (doc) {
         state.profileId = doc.id;
         state.profileEmail = doc.data().email;
+        state.profileName = doc.data().username;
         state.profileUsername = doc.data().username;
       }
     },
     async setBallerCards(state) {
       const querySnapshot = await getDocs(collection(db, 'ballerCards'));
-
       let cards = [];
       querySnapshot.forEach((doc) => {
         cards.push({ ...doc.data(), id: doc.id });
@@ -43,6 +44,9 @@ export const store = createStore({
     },
     setProfileInitials(state) {
       state.profileInitials = state.profileUsername.slice(0, 2);
+    },
+    async setProfileName(state) {
+      state.profileName = state.profileUsername;
     },
     changeUsername(state, payload) {
       state.profileUsername = payload;
@@ -56,6 +60,7 @@ export const store = createStore({
       if (docSnap.exists()) {
         commit('setProfileInfo', docSnap);
         commit('setProfileInitials');
+        commit('setProfileName');
       } else {
         console.log('No such document!');
       }
@@ -82,6 +87,7 @@ export const store = createStore({
         });
         commit('setBallerCards');
         await commit('setProfileInitials');
+        commit('setProfileName');
       } catch (error) {
         console.log(error.message);
       }

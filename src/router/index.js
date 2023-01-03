@@ -87,16 +87,18 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-router.beforeEach(async (to, from, next) => {
-  let user = getAuth().currentUser;
+setTimeout(() => {
+  router.beforeEach(async (to, from, next) => {
+    let user = await getAuth().currentUser;
 
-  if (to.matched.some((res) => res.meta.requiresAuth)) {
-    if (user) {
-      return next();
+    if (to.matched.some((res) => res.meta.requiresAuth)) {
+      if (user) {
+        return next();
+      }
+      return next({ name: 'Login' });
     }
-    return next({ name: 'Login' });
-  }
-  return next();
-});
+    return next();
+  });
+}, 1000);
 
 export default router;

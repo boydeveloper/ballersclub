@@ -78,8 +78,8 @@ html {
 body {
   font-size: 1.6rem;
   min-height: 100vh;
+  font-family: var(--bold-font);
   color: #fff;
-  font-family: 'DM Sans', sans-serif;
   font-weight: 500;
 }
 .container {

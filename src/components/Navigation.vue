@@ -31,10 +31,8 @@
 </template>
 
 <script>
-import { getAuth } from 'firebase/auth';
 export default {
   name: 'Navigation',
-
   data() {
     return {
       navOpen: false,
@@ -58,6 +56,7 @@ export default {
 .header {
   background-color: var(--primary-color);
   color: var(--color-white);
+  font-family: var(--bold-font);
   position: relative;
 }
 .navbar {
@@ -107,6 +106,11 @@ export default {
   font-size: 2rem;
   background-color: #120d18;
   color: var(--color-white);
+  height: 5rem;
+  width: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
   padding: 1rem;
   border-radius: 50%;

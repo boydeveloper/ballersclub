@@ -8,7 +8,6 @@
 <script>
 import Hero from './Containers/Hero';
 import Mission from './Containers/Mission';
-
 import Join from './Containers/Join';
 import Recents from './Containers/Recents';
 export default {
@@ -21,4 +20,4 @@ export default {
   },
 };
 </script>
-<style></style>
+<style scoped></style>
