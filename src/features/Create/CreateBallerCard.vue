@@ -6,16 +6,28 @@
           <h1>CreateCard💎</h1>
           <div>
             <label for="username">Username</label>
-            <input type="text" v-model="username" id="username" />
+            <input
+              type="text"
+              v-model="this.$store.state.profileUsername"
+              id="username"
+            />
+            <p class="error">{{ usernameErrMsg }}</p>
           </div>
           <div>
             <label for="twitter">Twitter</label>
             <input type="text" v-model="twitter" id="twitter" />
+            <p class="error">{{ twitterErrMsg }}</p>
           </div>
-          <button @click.prevent="create">submit</button>
+          <button @click.prevent="create">
+            {{ pending ? 'Creating....' : 'Create' }}
+          </button>
         </div>
         <label for="file" class="file-upload">
-          <img ref="preview" class="preview" :src="imageData" />
+          <div v-show="!file" class="upload-caution">
+            <ion-icon name="document-attach-outline"></ion-icon>
+            <p :class="error ? 'error' : ''">Please select a file to upload</p>
+          </div>
+          <img ref="preview" v-show="file" class="preview" />
           <input
             type="file"
             name="file"
@@ -39,19 +51,23 @@ import {
   getDownloadURL,
 } from 'firebase/storage';
 
-import { serverTimestamp, setDoc, doc } from '@firebase/firestore';
+import { serverTimestamp } from '@firebase/firestore';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebaseInit';
 export default {
   name: 'CreateBallerCard',
   data() {
     return {
-      username: this.$store.state.profileName,
+      username: this.$store.state.profileUsername,
       email: this.$store.state.profileEmail,
       twitter: '',
       file: null,
       ballerArt: null,
-      imageData: '',
+      usernameErrMsg: '',
+      twitterErrMsg: '',
+      error: null,
+      pending: null,
+      message: 'Create',
     };
   },
   methods: {
@@ -60,52 +76,58 @@ export default {
       const reader = new FileReader();
       reader.addEventListener('load', () => {
         this.$refs.preview.src = reader.result;
-        localStorage.setItem('imageData', this.imageData);
       });
       reader.readAsDataURL(this.file);
     },
-    async create() {
-      this.file = this.$refs.ballerPhoto.files[0];
-      const filename = this.file.name;
-
-      const storage = getStorage();
-      const storageRef = ref(storage, `${filename}--${uuidv4()}`);
-      const uploadTask = uploadBytesResumable(storageRef, this.file);
-      uploadTask.on(
-        'state_changed',
-        (snapshot) => {},
-        (error) => {
-          console.log(error.message);
-        },
-        async () => {
-          const imgUrl = await getDownloadURL(uploadTask.snapshot.ref);
-          this.ballerArt = await imgUrl;
-          try {
-            const docRef = await addDoc(collection(db, 'ballerCards'), {
-              username: this.username,
-              email: this.email,
-              twitter: this.twitter,
-              ballerPhoto: this.ballerArt,
-              timestamp: serverTimestamp(),
-            });
-            // console.log(docRef.id);
-            this.$router.push({ name: 'Home' });
-          } catch (error) {
-            console.log(error.message);
-          }
-        }
-      );
+    validate() {
+      if (this.$store.state.profileUsername === '')
+        this.usernameErrMsg = 'Input your Username';
+      if (this.twitter === '') this.twitterErrMsg = 'input your twitter Handle';
+      if (this.file === null) this.error = true;
     },
-  },
-  mounted() {
-    this.imageData = localStorage.getItem('imageData');
+    async create() {
+      this.validate();
+      setTimeout(() => {
+        this.twitterErrMsg = '';
+        this.usernameErrMsg = '';
+        this.error = '';
+      }, 4000);
+      if (this.username !== '' && this.twitter !== '' && this.file !== null) {
+        this.pending = true;
+        this.file = this.$refs.ballerPhoto.files[0];
+        const filename = this.file.name;
+        const storage = getStorage();
+        const storageRef = ref(storage, `${filename}--${uuidv4()}`);
+        const uploadTask = uploadBytesResumable(storageRef, this.file);
+        uploadTask.on(
+          'state_changed',
+          (snapshot) => {},
+          (error) => {},
+          async () => {
+            const imgUrl = await getDownloadURL(uploadTask.snapshot.ref);
+            this.ballerArt = await imgUrl;
+            try {
+              const docRef = await addDoc(collection(db, 'ballerCards'), {
+                username: this.username,
+                email: this.email,
+                twitter: this.twitter,
+                ballerPhoto: this.ballerArt,
+                timestamp: serverTimestamp(),
+              });
+              this.$router.push({ name: 'Mirror' });
+            } catch (error) {
+              console.log(error.message);
+            }
+          }
+        );
+      }
+    },
   },
 
   computed: {
     profileId() {
       return this.$store.state.profileId;
     },
-
     twitterHandle() {
       return this.$store.state.profileId;
     },
@@ -149,8 +171,12 @@ export default {
 }
 .preview {
   width: 100%;
-  height: 100%;
+  max-height: 36rem;
   object-fit: contain;
+}
+.upload-caution {
+  font-size: 2.5rem;
+  text-align: center;
 }
 .create-card button {
   font-family: var(--bold-font);
@@ -163,8 +189,10 @@ export default {
 .file-upload {
   padding: 2rem;
   height: 40rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  /* padding: 19rem 4rem; */
   border: 0.3rem var(--primary-color) dotted;
 }
 </style>

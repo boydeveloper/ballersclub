@@ -80,7 +80,7 @@ body {
   min-height: 100vh;
   font-family: var(--bold-font);
   color: #fff;
-  font-weight: 500;
+  font-weight: 700;
 }
 .container {
   max-width: 120rem;

@@ -1,10 +1,10 @@
 <template>
-  <section class="misison">
+  <section class="section-mission">
     <div class="container">
-      <h2 class="primary-heading">Our Mission</h2>
       <div class="mission">
         <div class="mission-textbox">
           <div class="misson-header"></div>
+          <h2 class="primary-heading">Our Mission</h2>
           <p class="mission-text">
             At BallersClub, we believe in the power of art and the value of
             supporting and empowering artists. Our mission is to provide a
@@ -21,7 +21,10 @@
           </p>
         </div>
         <div class="mission-imgbox">
-          <img src="../../../assets/imgs/bubblegoosePro.jpeg" alt="" />
+          <img
+            src="../../../assets/imgs/bubblegoosePro.jpeg"
+            alt="gooses painting"
+          />
         </div>
       </div>
     </div>
@@ -33,13 +36,16 @@ export default {
 };
 </script>
 <style scoped>
+.section-mission {
+  margin: 5rem 0;
+}
 .mission {
   display: flex;
   gap: 4rem;
-  flex-direction: column;
 }
 .mission-textbox {
-  width: 70%;
+  padding-top: 8rem;
+  width: 50%;
 }
 .mission-imgbox {
   width: 50%;
@@ -47,6 +53,9 @@ export default {
 }
 .mission-imgbox > img {
   width: 100%;
+  height: 58rem;
+  object-fit: cover;
+  border-radius: 3rem;
 }
 .mission-text {
   font-size: 1.8rem;

@@ -4,7 +4,7 @@
     <img :src="data.ballerPhoto" alt="baller img" class="baller-img" />
     <div class="baller-details">
       <router-link to="/" class="baller-id">
-        <ion-icon name="diamond"></ion-icon>
+        <!-- <ion-icon name="diamond"></ion-icon> -->
         {{ data.username }}
       </router-link>
       <router-link to="/" class="baller-twitter">
@@ -41,6 +41,7 @@ export default {
   padding: 0.5rem;
   height: 40rem;
   width: 100%;
+  object-fit: cover;
 }
 .baller-details {
   padding: 1rem 0.5rem;
@@ -51,6 +52,7 @@ export default {
 .baller-id:link,
 .baller-id:visited {
   color: #e89de6;
+  text-decoration: none;
   display: flex;
   align-items: center;
   font-size: 2rem;

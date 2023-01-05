@@ -3,12 +3,18 @@
     <div class="container">
       <div class="footer">
         <div class="footer-text">
-          &copy;💎Bubblegoose.All rights reserved.cc:carl jones
+          Ballersclub.com All rights reserved &copy;2023.
         </div>
         <div class="footer-links">
-          <ion-icon name="logo-twitter"></ion-icon>
-          <ion-icon name="logo-github"></ion-icon>
-          <ion-icon name="mail-outline"></ion-icon>
+          <router-link to="/" class="footer-link">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </router-link>
+          <router-link to="/" class="footer-link">
+            <ion-icon name="logo-github"></ion-icon>
+          </router-link>
+          <router-link class="footer-link" to="/">
+            <ion-icon name="mail-outline"> </ion-icon>
+          </router-link>
         </div>
       </div>
     </div>
@@ -24,14 +30,29 @@ export default {
 <style scoped>
 .section-footer {
   font-family: var(--bold-font);
-  padding: 2rem 0;
+  padding: 2.5rem 0;
   margin-top: auto;
-  background-color: var(--primary-color);
+  font-weight: 400;
+  border-top: 0.3rem solid var(--primary-color);
 }
 .footer {
-  /* height: 100vh; */
   display: flex;
+  font-weight: 500;
   align-items: center;
+  font-size: 1.8rem;
   justify-content: space-between;
+}
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  font-size: 1.8rem;
+}
+.footer-link:link,
+.footer-link:visited {
+  color: var(--color-white);
+  transition: color 0.2s;
+}
+.footer-link:hover {
+  color: rgb(134, 132, 132);
 }
 </style>

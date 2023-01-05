@@ -58,7 +58,7 @@ export default {
 }
 .hero {
   display: flex;
-  height: 80vh;
+  padding: 0rem 0 10rem;
   gap: 9rem;
   max-width: 120rem;
   margin: 0 auto;

@@ -6,8 +6,6 @@ import {
   updateDoc,
   getDocs,
   collection,
-  query,
-  where,
 } from 'firebase/firestore';
 import { createStore } from 'vuex';
 import { db } from '../firebase/firebaseInit';

@@ -11,8 +11,8 @@
           <router-link v-if="!user" to="/auth/login" class="nav-link"
             >Login</router-link
           >
-          <router-link to="/createballercard" v-show="user" class="addArt">
-            <img src="../assets/icons/add.svg" alt="add icon" />
+          <router-link to="/createballercard" v-show="user" class="nav-link">
+            Create
           </router-link>
           <router-link to="/profile" v-if="user" class="profile" ref="profile">
             <span>
@@ -54,9 +54,10 @@ export default {
 
 <style scoped>
 .header {
-  background-color: var(--primary-color);
+  border-bottom: solid 0.3rem var(--primary-color);
   color: var(--color-white);
   font-family: var(--bold-font);
+  background-color: var(--dark);
   position: relative;
 }
 .navbar {
@@ -104,8 +105,8 @@ export default {
 .profile:visited {
   text-transform: uppercase;
   font-size: 2rem;
-  background-color: #120d18;
-  color: var(--color-white);
+  background-color: var(--primary-color);
+  color: var(--dark);
   height: 5rem;
   width: 5rem;
   display: flex;
