@@ -11,7 +11,6 @@
 import BallerCard from '../../components/BallerCard';
 export default {
   name: 'Mirror',
-
   components: { BallerCard },
   computed: {
     ballerCardsData() {
