@@ -58,6 +58,18 @@ export default {
   border-radius: 3rem;
 }
 .mission-text {
+  line-height: 1.5;
   font-size: 1.8rem;
+}
+@media (max-width: 887px) {
+  .mission {
+    flex-direction: column;
+  }
+  .mission-imgbox,
+  .mission-textbox {
+    width: 100%;
+  }
+  .mission-text {
+  }
 }
 </style>

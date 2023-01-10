@@ -55,8 +55,15 @@
 </template>
 <script>
 import { auth, createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { uuidv4 } from '@firebase/util';
 
 import { db } from '../../firebase/firebaseInit';
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from 'firebase/storage';
 import { serverTimestamp, setDoc, doc } from '@firebase/firestore';
 export default {
   name: 'Signup',
@@ -66,6 +73,8 @@ export default {
       email: '',
       password: '',
       emailErrMsg: '',
+      // defaultProfileImg: require('../../assets/imgs/default.jpg'),
+      profileUrl: '',
       usernameErrMsg: '',
       passwordErrMsg: '',
       signupState: 'Signup',
@@ -106,9 +115,24 @@ export default {
             this.email,
             this.password
           );
+          const storage = getStorage();
+
+          const storageRef = ref(storage, `default---${uuidv4()}`);
+          const uploadTask = uploadBytesResumable(storageRef, photoUrl);
+
+          uploadTask.on(
+            'state_changed',
+            (snapshot) => {},
+            (error) => {},
+            async () => {
+              const imgUrl = await getDownloadURL(uploadTask.snapshot.ref);
+              this.profileUrl = await imgUrl;
+            }
+          );
           const result = await createUser.user;
           await setDoc(doc(db, 'users', result.uid), {
             username: this.username,
+            photoUrl: this.profileUrl,
             email: this.email,
           });
           this.$router.push({ name: 'Home' });
@@ -116,7 +140,7 @@ export default {
         }
       } catch (error) {
         this.signupState = 'Signup';
-        console.log(err.message);
+        console.log(error.message);
       }
     },
   },

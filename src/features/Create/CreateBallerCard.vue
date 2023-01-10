@@ -87,6 +87,8 @@ export default {
     },
     async create() {
       this.validate();
+      console.log('hie');
+
       setTimeout(() => {
         this.twitterErrMsg = '';
         this.usernameErrMsg = '';

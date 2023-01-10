@@ -66,9 +66,7 @@ export default {
 .hero-textbox {
   padding-top: 5rem;
 }
-strong {
-  font-family: var(--bold-font);
-}
+
 .hero-textbox > h1 {
   font-size: 4.5rem;
   letter-spacing: 0.3rem;
@@ -83,8 +81,7 @@ strong {
 .hero-textbox > p {
   font-size: 1.8rem;
   margin-bottom: 2rem;
-
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .hero-img-box {
@@ -121,7 +118,6 @@ strong {
 .gem {
   position: absolute;
   left: 0;
-  /* top: 9rem; */
   transform: rotate(-15deg);
 }
 @media (max-width: 1061px) {
@@ -142,7 +138,8 @@ strong {
   .hero-img {
     max-width: 30rem;
     object-fit: contain;
-    /* margin: 0 auto; */
+  }
+  @media (max-width: 585px) {
   }
 }
 </style>

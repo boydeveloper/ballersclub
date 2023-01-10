@@ -16,6 +16,7 @@ export const store = createStore({
     profileEmail: null,
     twitterHandle: '',
     profileUsername: '',
+    profilePhoto: '',
     profileName: '',
     profileId: null,
     profileInitials: null,
@@ -28,6 +29,7 @@ export const store = createStore({
       if (doc) {
         state.profileId = doc.id;
         state.profileEmail = doc.data().email;
+        state.profilePhoto = doc.data().photoUrl;
         state.profileName = doc.data().username;
         state.profileUsername = doc.data().username;
       }

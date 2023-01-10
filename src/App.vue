@@ -66,9 +66,11 @@ export default {
 }
 html {
   font-size: 62.5%;
+  overflow-x: hidden;
 }
 #app {
   display: flex;
+  overflow-x: hidden;
   flex-direction: column;
   background-color: #120d18;
 }
@@ -77,6 +79,7 @@ html {
 }
 body {
   font-size: 1.6rem;
+  overflow-x: hidden;
   min-height: 100vh;
   font-family: var(--bold-font);
   color: #fff;
@@ -128,6 +131,11 @@ body {
 .form-wrap {
   min-height: 100vh;
 }
+.grid--3--cols {
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: repeat(3, 1fr);
+}
 .auth-link:link,
 .auth-link:visited {
   color: rgb(227, 221, 221);
@@ -143,5 +151,23 @@ body {
 }
 .error {
   color: #e03131;
+}
+@media (max-width: 1061px) {
+  .grid--3--cols {
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 887px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+@media (max-width: 585px) {
+  .grid--3--cols {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 </style>

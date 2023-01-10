@@ -3,7 +3,7 @@
     <div class="container">
       <div class="recents">
         <span class="primary-heading"> Recent Drops </span>
-        <div class="recent-drops">
+        <div class="recent-drops grid--3--cols">
           <BallerCard :ballerCardsData="ballerCardsData" />
         </div>
       </div>
@@ -28,9 +28,6 @@ export default {
 }
 
 .recent-drops {
-  display: grid;
   margin: 2rem 0;
-  gap: 4rem;
-  grid-template-columns: repeat(3, 1fr);
 }
 </style>

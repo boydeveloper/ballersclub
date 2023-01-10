@@ -14,12 +14,6 @@
           <router-link to="/" class="primary-btn join-btn"
             >Get started</router-link
           >
-          <!-- </div> -->
-
-          <!-- <img
-              src="../../../assets/imgs/welcomeballer.jpeg"
-              alt="goose painitng"
-            /> -->
         </div>
       </div>
     </div>
@@ -35,29 +29,26 @@ export default {
   margin: 5rem 0;
 }
 .join {
-  /* background-color: var(--primary-color); */
   background-image: url(../../../assets/imgs/welcomeballer.jpeg);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: top top;
+  background-position: top center;
   border-radius: 2rem;
   padding: 4rem;
   text-align: center;
 }
-.join-textbox {
-  width: 60%;
-}
-.join-Imgbox > img {
-  width: 100%;
-  /* margin-bottom: auto; */
-  /* height: 78rem; */
-  object-fit: contain;
-}
+
 .join-text {
   margin-bottom: 1rem;
   font-size: 2rem;
+  color: #fff;
 }
 .join-btn:link,
 .join-btn:visited {
+}
+@media (max-width: 585px) {
+  .join {
+    padding: 2rem;
+  }
 }
 </style>
