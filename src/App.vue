@@ -159,7 +159,7 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media (max-width: 887px) {
+@media (max-width: 900px) {
   .container {
     padding: 0 2rem;
   }

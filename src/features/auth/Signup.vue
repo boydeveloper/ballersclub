@@ -185,4 +185,21 @@ export default {
   cursor: pointer;
   background-color: var(--primary-color);
 }
+@media (max-width: 900px) {
+  .form-wrap {
+    flex-direction: column;
+  }
+  .form-wrap--left {
+    padding: 7rem 4rem;
+    width: 100%;
+  }
+  .form-wrap--right {
+    display: none;
+  }
+  @media (max-width: 585px) {
+    .form-wrap--left {
+      padding: 4rem 2rem;
+    }
+  }
+}
 </style>

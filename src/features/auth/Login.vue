@@ -177,4 +177,21 @@ export default {
 .disabled {
   background-color: #e414d6 !important;
 }
+@media (max-width: 900px) {
+  .form-wrap {
+    flex-direction: column;
+  }
+  .form-wrap--right {
+    display: none;
+  }
+  .form-wrap--left {
+    padding: 7rem 4rem;
+    width: 100%;
+  }
+  @media (max-width: 585px) {
+    .form-wrap--left {
+      padding: 4rem 2rem;
+    }
+  }
+}
 </style>
