@@ -54,6 +54,7 @@ export default {
       const auth = getAuth();
       auth.signOut();
       this.$router.push({ name: 'Home' });
+      // location.reload();
     },
     openModal() {
       this.showModal = true;

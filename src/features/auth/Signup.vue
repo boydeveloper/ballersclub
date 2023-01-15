@@ -115,24 +115,11 @@ export default {
             this.email,
             this.password
           );
-          const storage = getStorage();
 
-          const storageRef = ref(storage, `default---${uuidv4()}`);
-          const uploadTask = uploadBytesResumable(storageRef, photoUrl);
-
-          uploadTask.on(
-            'state_changed',
-            (snapshot) => {},
-            (error) => {},
-            async () => {
-              const imgUrl = await getDownloadURL(uploadTask.snapshot.ref);
-              this.profileUrl = await imgUrl;
-            }
-          );
           const result = await createUser.user;
           await setDoc(doc(db, 'users', result.uid), {
             username: this.username,
-            photoUrl: this.profileUrl,
+
             email: this.email,
           });
           this.$router.push({ name: 'Home' });

@@ -10,6 +10,7 @@ import Login from '../features/auth/Login';
 import Signup from '../features/auth/Signup';
 import Forgotpassword from '../features/auth/Forgotpassword';
 import { getAuth } from 'firebase/auth';
+// import { get } from 'core-js/core/dict';
 //
 const routes = [
   {
@@ -87,18 +88,16 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-setTimeout(() => {
-  router.beforeEach(async (to, from, next) => {
-    let user = await getAuth().currentUser;
+router.beforeEach(async (to, from, next) => {
+  let user = await getAuth().currentUser;
 
-    if (to.matched.some((res) => res.meta.requiresAuth)) {
-      if (user) {
-        return next();
-      }
-      return next({ name: 'Login' });
+  if (to.matched.some((res) => res.meta.requiresAuth)) {
+    if (user) {
+      return next();
     }
-    return next();
-  });
-}, 1000);
+    return next({ name: 'Login' });
+  }
+  return next();
+});
 
 export default router;

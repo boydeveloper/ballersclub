@@ -8,7 +8,10 @@
         {{ data.username }}
       </router-link>
       <router-link to="/" class="baller-twitter">
-        <ion-icon name="logo-twitter"></ion-icon>
+        <ion-icon
+          name="logo-twitter"
+          compilerOptions.isCustomElement
+        ></ion-icon>
         {{ data.twitter }}
       </router-link>
     </div>

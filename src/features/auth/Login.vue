@@ -93,6 +93,7 @@ export default {
           await signInWithEmailAndPassword(auth, this.email, this.password);
           this.pending = false;
           this.$router.push({ name: 'Mirror' });
+          // location.reload();
         }
       } catch (err) {
         this.message = 'Login';
