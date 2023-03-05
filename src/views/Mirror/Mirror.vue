@@ -24,7 +24,6 @@ export default {
   min-height: 100vh;
 }
 .mirror-arts {
-  /* height: 100vh; */
   padding: 2rem 0;
   display: grid;
   gap: 3.5rem;

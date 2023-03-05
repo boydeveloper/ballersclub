@@ -39,7 +39,9 @@ export const store = createStore({
       let cards = [];
       querySnapshot.forEach((doc) => {
         cards.push({ ...doc.data(), id: doc.id });
-        state.ballerCardsData = cards;
+        state.ballerCardsData = cards.sort(
+          (a, b) => b.timestamp.toDate() - a.timestamp.toDate()
+        );
       });
     },
     setProfileInitials(state) {

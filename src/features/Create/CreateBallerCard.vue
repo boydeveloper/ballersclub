@@ -116,6 +116,8 @@ export default {
                 ballerPhoto: this.ballerArt,
                 timestamp: serverTimestamp(),
               });
+              await docRef;
+              this.$store.commit('setBallerCards');
               this.$router.push({ name: 'Mirror' });
             } catch (error) {
               console.log(error.message);

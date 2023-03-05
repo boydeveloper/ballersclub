@@ -5,4 +5,3 @@ import { store } from './store';
 
 let app;
 createApp(App).use(router).use(store).mount('#app');
-// }, 2000);
