@@ -27,7 +27,13 @@
       <div class="profile-drops">
         <h1>My Drops</h1>
         <div class="profile-grid">
-          <BalllerCard :ballerCardsData="ballerCardsData" />
+          <BalllerCard
+            :ballerCardsData="
+              ballerCardsData.filter(
+                (data) => data.username === this.$store.state.profileName
+              )
+            "
+          />
         </div>
       </div>
     </div>
@@ -54,7 +60,6 @@ export default {
       const auth = getAuth();
       auth.signOut();
       this.$router.push({ name: 'Home' });
-      // location.reload();
     },
     openModal() {
       this.showModal = true;
