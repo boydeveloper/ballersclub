@@ -2,16 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router';
 // views
 import Home from '../views/Home/Home';
 import Mirror from '../views/Mirror/Mirror';
-import Profile from '../views/Profile/Profile.vue';
-//
+import Profile from '../views/UserProfile/Profile.vue';
 import CreateBallerCard from '../features/Create/CreateBallerCard';
-// auth
 import Login from '../features/auth/Login';
 import Signup from '../features/auth/Signup';
 import Forgotpassword from '../features/auth/Forgotpassword';
 import { getAuth } from 'firebase/auth';
-// import { get } from 'core-js/core/dict';
-//
+
 const routes = [
   {
     path: '/',
@@ -50,7 +47,7 @@ const routes = [
     },
   },
   {
-    path: '/profile',
+    path: '/:id',
     name: 'Profile',
     component: Profile,
     meta: {

@@ -14,7 +14,12 @@
           <router-link to="/createballercard" v-show="user" class="nav-link">
             Create
           </router-link>
-          <router-link to="/profile" v-if="user" class="profile" ref="profile">
+          <router-link
+            :to="'/' + this.$store.state.profileName"
+            v-if="user"
+            class="profile"
+            ref="profile"
+          >
             <span>
               {{ this.$store.state.profileInitials }}
             </span>
