@@ -1,8 +1,6 @@
 <template lang="">
   <div class="ballerProfile">
-    <div class="banner-img">
-      <!-- <img src="../../assets/imgs/signup.jpeg" alt="school of ballers" /> -->
-    </div>
+    <div class="banner-img"></div>
     <div class="container">
       <div class="profile-box">
         <div class="initials-circle">{{ name.slice(0, 2) }}</div>
@@ -56,8 +54,10 @@ export default {
   height: 20rem;
   background-size: cover;
   width: 100%;
+  border: 0.2rem solid var(--primary-color);
+  border-top: 0;
   background-position: 60% 50%;
-  background-image: url('../../assets/imgs/signup.jpeg');
+  background-image: url('../../assets/imgs/ballercoverphoto.jpeg');
 }
 .profile-box {
   display: flex;
