@@ -62,7 +62,8 @@ export default {
   --primary-color: #ff77f7;
   --dark: #120d18;
   --color-white: #fff;
-  --bold-font: 'Clash Grotesk', sans-serif;
+  --bold-font: 'Rubik', sans-serif;
+  /* --bold-font: 'Clash Grotesk', sans-serif; */
 }
 html {
   font-size: 62.5%;
@@ -71,6 +72,7 @@ html {
 #app {
   display: flex;
   overflow-x: hidden;
+  min-height: 100vh;
   flex-direction: column;
   background-color: #120d18;
 }
@@ -79,11 +81,15 @@ html {
 }
 body {
   font-size: 1.6rem;
+  /* line-height: 2.6rem; */
   overflow-x: hidden;
   min-height: 100vh;
+  font-display: swap;
   font-family: var(--bold-font);
   color: #fff;
+  /* font-weight: 400; */
   font-weight: 700;
+  font-family: 'Clash Grotesk', sans-serif;
 }
 .container {
   max-width: 120rem;
@@ -92,7 +98,7 @@ body {
 }
 .primary-heading {
   font-size: 3.5rem;
-  font-family: var(--bold-font);
+  font-weight: 700;
   color: #120d18;
   text-shadow: 2px 0 var(--primary-color), -2px 0 var(--primary-color),
     0 2px var(--primary-color), 0 -2px var(--primary-color),
@@ -155,7 +161,7 @@ body {
 @media (max-width: 1061px) {
   .grid--3--cols {
     display: grid;
-    gap: 4rem;
+
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -168,6 +174,15 @@ body {
   .grid--3--cols {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+  .primary-btn:link {
+    padding: 1.2rem 1.4rem;
+    font-size: 1.6rem;
+  }
+}
+@media (max-width: 391px) {
+  .primary-heading {
+    font-size: 3.2rem;
   }
 }
 </style>

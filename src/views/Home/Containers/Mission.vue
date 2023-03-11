@@ -65,11 +65,20 @@ export default {
   .mission {
     flex-direction: column;
   }
+  .mission-textbox {
+    padding: 0;
+  }
   .mission-imgbox,
   .mission-textbox {
     width: 100%;
   }
+}
+@media (max-width: 585px) {
+  .section-mission {
+    margin: 5rem 0;
+  }
   .mission-text {
+    font-size: 1.6rem;
   }
 }
 </style>

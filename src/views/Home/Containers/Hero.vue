@@ -72,7 +72,7 @@ export default {
   letter-spacing: 0.3rem;
   margin-bottom: 2rem;
   color: #120d18;
-  font-family: var(--bold-font);
+  font-family: 'Clash Grotesk', sans-serif;
   text-shadow: 2px 0 var(--primary-color), -2px 0 var(--primary-color),
     0 2px var(--primary-color), 0 -2px var(--primary-color),
     1px 1px var(--primary-color), -1px -1px var(--primary-color),
@@ -140,6 +140,17 @@ export default {
     object-fit: contain;
   }
   @media (max-width: 585px) {
+    .hero-textbox h1 {
+      font-size: 3.8rem;
+    }
+  }
+  @media (max-width: 391px) {
+    .hero-textbox > h1 {
+      font-size: 3.2rem;
+    }
+    .hero-textbox > p {
+      font-size: 1.6rem;
+    }
   }
 }
 </style>

@@ -29,7 +29,9 @@ export default {
   margin: 5rem 0;
 }
 .join {
-  background-image: url(../../../assets/imgs/welcomeballer.jpeg);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('../../../assets/imgs/ballerhomepicidea.jpeg') center/cover no-repeat;
+
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
@@ -41,14 +43,14 @@ export default {
 .join-text {
   margin-bottom: 1rem;
   font-size: 2rem;
-  color: #fff;
-}
-.join-btn:link,
-.join-btn:visited {
+  color: var(--color-white);
 }
 @media (max-width: 585px) {
   .join {
-    padding: 2rem;
+    padding: 2.5rem;
+  }
+  .join-text {
+    font-size: 1.6rem;
   }
 }
 </style>

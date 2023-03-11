@@ -1,19 +1,36 @@
 <template>
-  <header :class="navOpen ? 'header open' : 'header'">
+  <header class="header">
     <div class="container">
       <nav class="navbar">
         <router-link to="/" class="nav-brand">BallersClub💎</router-link>
         <ul class="nav-links">
-          <router-link to="/mirror" class="nav-link"> Mirror</router-link>
+          <router-link to="/mirror" class="nav-link hide"> Mirror</router-link>
           <router-link v-if="!user" to="/auth/signup" class="nav-link"
             >Get started</router-link
           >
           <router-link v-if="!user" to="/auth/login" class="nav-link"
             >Login</router-link
           >
-          <router-link to="/createballercard" v-show="user" class="nav-link">
+          <router-link
+            to="/createballercard"
+            v-show="user"
+            class="nav-link hide"
+          >
             Create
           </router-link>
+          <router-link to="/mirror" class="nav-link isMobile">
+            <span class="material-symbols-outlined FS">
+              heap_snapshot_thumbnail</span
+            >
+          </router-link>
+          <router-link
+            to="/createballercard"
+            class="nav-link isMobile"
+            v-show="user"
+          >
+            <span class="material-symbols-outlined FS"> edit_square </span>
+          </router-link>
+
           <router-link
             :to="'/' + this.$store.state.profileName"
             v-if="user"
@@ -25,11 +42,6 @@
             </span>
           </router-link>
         </ul>
-        <button @click="toggleNav">
-          <div class="hamburger-stroke-I"></div>
-          <div class="hamburger-stroke-I"></div>
-          <div class="hamburger-stroke-I"></div>
-        </button>
       </nav>
     </div>
   </header>
@@ -44,9 +56,9 @@ export default {
     };
   },
   components: {},
-  methods: {
-    toggleNav() {
-      this.navOpen = !this.navOpen;
+  computed: {
+    isMobile() {
+      return window.innerWidth < 522;
     },
   },
   computed: {
@@ -81,7 +93,9 @@ export default {
 }
 .nav-links {
   display: flex;
+
   align-items: center;
+  /* align-items: baseline; */
   gap: 2.5rem;
 }
 .nav-link:link,
@@ -98,7 +112,6 @@ export default {
   height: 2.4rem;
   width: 2.4rem;
   position: absolute;
-
   bottom: 0;
   transform: rotate(-35deg);
 }
@@ -121,56 +134,44 @@ export default {
   padding: 1rem;
   border-radius: 50%;
 }
-button {
-  background: none;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  text-align: right;
-  cursor: pointer;
-  align-items: flex-end;
+.hide {
+  display: block;
+}
+.isMobile {
   display: none;
 }
-button > div {
-  content: '';
-  border-radius: 0.2rem;
-  height: 0.4rem;
-  width: 3rem;
-  transition: transform 0.3s;
-  background-color: var(--color-white);
-}
-button > div:nth-child(2) {
+.FS {
+  height: 2.5rem;
   width: 2.5rem;
 }
-@media (max-width: 1061px) {
-  button {
-    display: flex;
+@media (max-width: 551px) {
+  .nav-brand:link {
+    font-size: 2.5rem;
   }
   .nav-links {
-    position: fixed;
-    top: 0;
-    z-index: 4;
-    flex-direction: column;
-    right: 0;
-    padding: 8rem;
-    width: 50%;
-    align-items: flex-end;
-    background-color: var(--primary-color);
-    height: 100vh;
-    transform: translateX(100%);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: 0.3s transform;
-    transform-origin: right;
+    gap: 2rem;
   }
-
-  .open .nav-links {
-    transform: translateX(0);
-    opacity: 1;
-    visibility: visible;
-    pointer-events: all;
+  .isMobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hide {
+    display: none;
+  }
+}
+@media (max-width: 391px) {
+  .nav-links {
+    gap: 1.8rem;
+  }
+  .nav-brand:link {
+    font-size: 2.2rem;
+  }
+  .profile:link,
+  .profile:visited {
+    font-size: 1.8rem;
+    height: 3.5rem;
+    width: 3.5rem;
   }
 }
 </style>

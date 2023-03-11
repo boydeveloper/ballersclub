@@ -17,7 +17,7 @@ export default {
   components: { BallerCard },
   computed: {
     ballerCardsData() {
-      return this.$store.state.ballerCardsData;
+      return this.$store.state.ballerCardsData.slice(0, 6);
     },
   },
 };

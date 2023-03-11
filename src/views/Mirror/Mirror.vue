@@ -29,4 +29,18 @@ export default {
   gap: 3.5rem;
   grid-template-columns: repeat(3, 1fr);
 }
+@media (max-width: 1061px) {
+  .mirror-arts {
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 585px) {
+  .mirror-arts {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
 </style>

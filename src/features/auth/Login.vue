@@ -33,7 +33,7 @@
             v-model="password"
             placeholder="******"
           />
-          <p class="error">{{ passwordErrMsg }}</p>
+          <p class="error">{{ errMsg }}</p>
         </div>
         <button @click.prevent="loginUser">
           {{ message }}
@@ -50,17 +50,18 @@
   </div>
 </template>
 <script>
+import { ref } from 'vue';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+
 export default {
   name: 'Login',
-
   data() {
     return {
       email: '',
       password: '',
       error: null,
-      emailErrMsg: '',
-      passwordErrMsg: '',
+      emailErrMsg: null,
+      errMsg: null,
       pending: null,
       message: 'login',
     };
@@ -72,34 +73,39 @@ export default {
       if (this.email.indexOf('.com') === -1)
         this.emailErrMsg = "Email is invalid: it must contain '.com'";
       if (this.password.length <= 7)
-        this.passwordMsg = 'Password mMust contain at least 8 characters';
-    },
-    async loginUser() {
+        this.errMsg = 'Password Must contain at least 8 characters';
       setTimeout(() => {
+        this.errMsg = '';
         this.emailErrMsg = '';
-        this.passwordErrMsg = '';
-      }, 4000);
+      }, 3000);
+    },
+
+    loginUser() {
       this.validate();
-      try {
-        if (
-          this.email !== '' &&
-          this.password !== '' &&
-          this.email.indexOf('.com') !== -1
-        ) {
-          this.emailErrMsg = '';
-          this.passwordErrMsg = '';
-          this.message = 'Loading.....';
-          const auth = getAuth();
-          await signInWithEmailAndPassword(auth, this.email, this.password);
-          this.pending = false;
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, this.email, this.password)
+        .then((data) => {
+          console.log('logged in');
+          console.log(auth.currentUser);
           this.$router.push({ name: 'Mirror' });
-          // location.reload();
-        }
-      } catch (err) {
-        this.message = 'Login';
-        if (err.message === 'Firebase: Error (auth/wrong-password).')
-          this.passwordErrMsg = 'wrong password';
-      }
+        })
+        .catch((error) => {
+          switch (error.code) {
+            case 'auth/invalid-email':
+              this.emailErrMsg = 'Invalid email';
+              break;
+            case 'auth/user-not-found':
+              this.emailErrMsg = 'No account found with that email';
+              break;
+            case 'auth/wrong-password':
+              this.errMsg = 'Incorrect password';
+              break;
+            default:
+              this.errMsg = 'Email or password was incorrect';
+              break;
+          }
+          console.log(errMsg.value);
+        });
     },
   },
 };

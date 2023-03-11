@@ -3,7 +3,7 @@
     <img src="../assets/imgs/gemstone.png" alt="gem stone" class="diamond" />
     <img :src="data.ballerPhoto" alt="baller img" class="baller-img" />
     <div class="baller-details">
-      <router-link to="/" class="baller-id">
+      <router-link :to="'/baller/' + data.username" class="baller-id">
         <!-- <ion-icon name="diamond"></ion-icon> -->
         {{ data.username }}
       </router-link>

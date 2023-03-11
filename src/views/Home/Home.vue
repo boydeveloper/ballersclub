@@ -12,6 +12,7 @@ import Sponsors from './Containers/Sponsors.vue';
 import Mission from './Containers/Mission';
 import Join from './Containers/Join';
 import Recents from './Containers/Recents';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 export default {
   name: 'Home',
   components: {
@@ -20,6 +21,17 @@ export default {
     Mission,
     Recents,
     Join,
+  },
+  created() {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      this.$store.commit('updateUser', user);
+      if (user) {
+        this.$store.dispatch('getCurrentUser');
+      }
+    });
+    this.$store.commit('setBallerCards');
+    // this.checkRoute();
   },
 };
 </script>

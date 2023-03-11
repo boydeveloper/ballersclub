@@ -3,11 +3,13 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home/Home';
 import Mirror from '../views/Mirror/Mirror';
 import Profile from '../views/UserProfile/Profile.vue';
+import BallerProfile from '../views/Profile/BallerProfile.vue';
 import CreateBallerCard from '../features/Create/CreateBallerCard';
+
 import Login from '../features/auth/Login';
 import Signup from '../features/auth/Signup';
 import Forgotpassword from '../features/auth/Forgotpassword';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const routes = [
   {
@@ -56,6 +58,15 @@ const routes = [
     },
   },
   {
+    path: '/baller/:id',
+    name: 'Baller-Profile',
+    component: BallerProfile,
+    meta: {
+      title: 'Baller-Profile',
+    },
+  },
+
+  {
     path: '/auth/forgotpassword',
     name: 'Forgotpassword',
     component: Forgotpassword,
@@ -85,9 +96,21 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-router.beforeEach(async (to, from, next) => {
-  let user = await getAuth().currentUser;
+const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const removeListener = onAuthStateChanged(
+      getAuth(),
+      (user) => {
+        removeListener();
+        resolve(user);
+      },
+      reject
+    );
+  });
+};
 
+router.beforeEach(async (to, from, next) => {
+  let user = await getCurrentUser();
   if (to.matched.some((res) => res.meta.requiresAuth)) {
     if (user) {
       return next();

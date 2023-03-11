@@ -17,23 +17,26 @@
             <h1 class="username" @click="openModal">
               {{ this.$store.state.profileName }}
             </h1>
-            <p>💎4 arts uploaded</p>
+            <p>💎{{ cardsCount }} arts uploaded</p>
           </div>
         </div>
         <div class="profile-header-right">
-          <button @click="signOut" class="primary-btn">Logout</button>
+          <button @click="logOut" class="primary-btn">Logout</button>
         </div>
       </div>
       <div class="profile-drops">
         <h1>My Drops</h1>
-        <div class="profile-grid grid--3--cols">
-          <BalllerCard
-            :ballerCardsData="
-              ballerCardsData.filter(
-                (data) => data.username === this.$store.state.profileName
-              )
-            "
-          />
+        <!-- <div  class="no-drops">
+        </div> -->
+        <div
+          :class="
+            ballerCardsData.length === 0
+              ? 'no-drops'
+              : 'profile-grid grid--3--cols'
+          "
+        >
+          <h1 v-if="ballerCardsData.length === 0">NO uploads yet</h1>
+          <BalllerCard :ballerCardsData="ballerCardsData" />
         </div>
       </div>
     </div>
@@ -42,7 +45,9 @@
 <script>
 import BalllerCard from '../../components/BallerCard';
 import UpdateProfileModal from './components/UpdateProfileModal';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+
+import { onMounted } from 'vue';
 
 export default {
   name: 'Profile',
@@ -53,13 +58,16 @@ export default {
   data() {
     return {
       showModal: null,
+      // drops: [],
     };
   },
+
   methods: {
-    signOut() {
+    async logOut() {
       const auth = getAuth();
-      auth.signOut();
-      this.$router.push({ name: 'Home' });
+      signOut(auth).then(() => {
+        this.$router.push({ name: 'Home' });
+      });
     },
     openModal() {
       this.showModal = true;
@@ -68,11 +76,18 @@ export default {
       this.showModal = false;
     },
   },
+
   computed: {
     ballerCardsData() {
-      return this.$store.state.ballerCardsData;
+      return this.$store.state.ballerCardsData.filter(
+        (data) => data.username === this.$store.state.profileName
+      );
+    },
+    cardsCount() {
+      return this.ballerCardsData.length;
     },
   },
+  onMounted,
 };
 </script>
 <style scoped>
@@ -80,26 +95,29 @@ export default {
   font-family: var(--bold-font);
   padding: 2rem 0;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
 }
 .profile-header {
   display: flex;
   margin-bottom: 6rem;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
+}
+.no-drops {
+  display: flex;
+  padding: 8rem 6rem;
+  align-items: center;
+  justify-content: center;
 }
 .profile-picture {
   background-color: var(--primary-color);
   color: var(--dark);
-  /* padding: 5rem; */
   border-radius: 50%;
   height: 15rem;
   width: 15rem;
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 6rem;
   box-shadow: 0.3rem 0.2rem 0.4rem 0.2rem rgba(225, 225, 225, 0.1);
   text-transform: uppercase;
