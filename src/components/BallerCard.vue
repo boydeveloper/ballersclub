@@ -4,7 +4,6 @@
     <img :src="data.ballerPhoto" alt="baller img" class="baller-img" />
     <div class="baller-details">
       <router-link :to="'/baller/' + data.username" class="baller-id">
-        <!-- <ion-icon name="diamond"></ion-icon> -->
         {{ data.username }}
       </router-link>
       <router-link to="/" class="baller-twitter">

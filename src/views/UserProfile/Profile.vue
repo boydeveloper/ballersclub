@@ -1,6 +1,7 @@
 <template>
   <div class="profile">
     <div v-show="showModal" class="modal-bg"></div>
+    <div class="coverPhoto"></div>
     <UpdateProfileModal
       v-show="showModal"
       @close-modal="closeModal"
@@ -17,11 +18,11 @@
             <h1 class="username" @click="openModal">
               {{ this.$store.state.profileName }}
             </h1>
-            <p>💎{{ cardsCount }} arts uploaded</p>
+            <!-- <p>💎{{ cardsCount }} arts uploaded</p> -->
           </div>
         </div>
         <div class="profile-header-right">
-          <button @click="logOut" class="primary-btn">Logout</button>
+          <button @click="logOut" class="primary-btn">Log Out</button>
         </div>
       </div>
       <div class="profile-drops">
@@ -93,15 +94,25 @@ export default {
 <style scoped>
 .profile {
   font-family: var(--bold-font);
-  padding: 2rem 0;
+  padding-bottom: 2rem;
   min-height: 100vh;
 }
 .profile-header {
   display: flex;
   margin-bottom: 6rem;
   width: 100%;
+  /* flex-direction: column; */
   justify-content: space-between;
   align-items: center;
+}
+.coverPhoto {
+  height: 20rem;
+  background-size: cover;
+  width: 100%;
+  border: 0.2rem solid var(--primary-color);
+  border-top: 0;
+  background-position: 60% 50%;
+  background-image: url('../../assets/imgs/ballercoverphoto.jpeg');
 }
 .no-drops {
   display: flex;
@@ -117,6 +128,7 @@ export default {
   width: 15rem;
   display: flex;
   align-items: center;
+  margin-top: -8rem;
   justify-content: center;
   font-size: 6rem;
   box-shadow: 0.3rem 0.2rem 0.4rem 0.2rem rgba(225, 225, 225, 0.1);
@@ -124,8 +136,9 @@ export default {
 }
 .profile-header-left {
   gap: 2rem;
+  flex-direction: column;
   display: flex;
-  align-items: center;
+  align-items: left;
 }
 .profile-header-right {
   display: flex;
@@ -152,7 +165,8 @@ export default {
   height: 1.8rem;
 }
 .username {
-  font-size: 8rem;
+  font-size: 6rem;
   cursor: pointer;
+  text-transform: capitalize;
 }
 </style>

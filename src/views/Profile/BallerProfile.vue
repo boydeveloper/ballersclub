@@ -34,7 +34,6 @@ export default {
   mounted() {
     this.name = this.$route.params.id;
   },
-
   computed: {
     ballerCardsData() {
       this.name = this.$route.params.id;

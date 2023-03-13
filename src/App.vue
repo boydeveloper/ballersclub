@@ -3,7 +3,6 @@
   <router-view />
   <Footer v-show="!navigation" />
 </template>
-
 <script>
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
@@ -62,8 +61,7 @@ export default {
   --primary-color: #ff77f7;
   --dark: #120d18;
   --color-white: #fff;
-  --bold-font: 'Rubik', sans-serif;
-  /* --bold-font: 'Clash Grotesk', sans-serif; */
+  --bolder-font: 'Clash Grotesk', sans-serif;
 }
 html {
   font-size: 62.5%;
@@ -76,20 +74,14 @@ html {
   flex-direction: column;
   background-color: #120d18;
 }
-#app::-webkit-scrollbar-track {
-  background-color: var(--primary-color);
-}
 body {
   font-size: 1.6rem;
-  /* line-height: 2.6rem; */
   overflow-x: hidden;
   min-height: 100vh;
   font-display: swap;
-  font-family: var(--bold-font);
+  font-family: var(--bolder-font);
   color: #fff;
-  /* font-weight: 400; */
   font-weight: 700;
-  font-family: 'Clash Grotesk', sans-serif;
 }
 .container {
   max-width: 120rem;
