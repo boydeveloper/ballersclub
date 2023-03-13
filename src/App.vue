@@ -176,5 +176,8 @@ body {
   .primary-heading {
     font-size: 3.2rem;
   }
+  .container {
+    padding: 0 1.2rem;
+  }
 }
 </style>

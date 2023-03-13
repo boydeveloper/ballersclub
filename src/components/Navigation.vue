@@ -4,9 +4,11 @@
       <nav class="navbar">
         <router-link to="/" class="nav-brand">BallersClub💎</router-link>
         <ul class="nav-links">
-          <router-link to="/mirror" class="nav-link hide"> Mirror</router-link>
+          <router-link to="/mirror" :class="user ? 'nav-link 💪🏾' : 'nav-link'">
+            Mirror</router-link
+          >
           <router-link v-if="!user" to="/auth/signup" class="nav-link"
-            >Get started</router-link
+            >Signup</router-link
           >
           <router-link v-if="!user" to="/auth/login" class="nav-link"
             >Login</router-link
@@ -18,11 +20,6 @@
           >
             Create
           </router-link>
-          <router-link to="/mirror" class="nav-link isMobile">
-            <span class="material-symbols-outlined FS">
-              heap_snapshot_thumbnail</span
-            >
-          </router-link>
           <router-link
             to="/createballercard"
             class="nav-link isMobile"
@@ -30,7 +27,6 @@
           >
             <span class="material-symbols-outlined FS"> edit_square </span>
           </router-link>
-
           <router-link
             :to="'/' + this.$store.state.profileName"
             v-if="user"
@@ -80,6 +76,7 @@ export default {
 .navbar {
   display: flex;
   padding: 2rem 0;
+  height: 7.5rem;
   justify-content: space-between;
   align-items: center;
 }
@@ -156,17 +153,30 @@ export default {
     align-items: center;
     justify-content: center;
   }
+  .💪🏾 {
+    margin-top: 0.5rem;
+  }
   .hide {
     display: none;
   }
 }
-@media (max-width: 391px) {
+@media (max-width: 410px) {
+  .navbar {
+    padding: 1.5rem 0;
+    height: 6rem;
+  }
   .nav-links {
-    gap: 1.8rem;
+    gap: 1.2rem;
+    font-weight: 700;
+    font-family: 'Rubik', sans-serif;
   }
   .nav-brand:link {
     font-size: 2.2rem;
   }
+  .nav-link:link {
+    font-size: 1.6rem;
+  }
+
   .profile:link,
   .profile:visited {
     font-size: 1.8rem;
