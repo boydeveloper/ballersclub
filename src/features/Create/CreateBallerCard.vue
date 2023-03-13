@@ -199,4 +199,14 @@ export default {
   width: 100%;
   border: 0.3rem var(--primary-color) dotted;
 }
+@media (max-width: 900px) {
+  .create-card form {
+    flex-direction: column-reverse;
+  }
+}
+@media (max-width: 585px) {
+  .createCard-details {
+    width: 100%;
+  }
+}
 </style>

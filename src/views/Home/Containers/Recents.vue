@@ -30,4 +30,9 @@ export default {
 .recent-drops {
   margin: 2rem 0;
 }
+@media (max-width: 410px) {
+  .section-recents {
+    padding: 2.5rem 0;
+  }
+}
 </style>

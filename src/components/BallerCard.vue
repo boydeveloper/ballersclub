@@ -6,13 +6,14 @@
       <router-link :to="'/baller/' + data.username" class="baller-id">
         {{ data.username }}
       </router-link>
-      <router-link to="/" class="baller-twitter">
-        <ion-icon
-          name="logo-twitter"
-          compilerOptions.isCustomElement
-        ></ion-icon>
+      <a
+        :href="'https://twitter.com/' + data.twitter"
+        target=" _blank"
+        class="baller-twitter"
+      >
+        <ion-icon name="logo-twitter"></ion-icon>
         {{ data.twitter }}
-      </router-link>
+      </a>
     </div>
   </div>
 </template>
@@ -67,6 +68,7 @@ export default {
 .baller-twitter:link,
 .baller-twitter:visited {
   display: flex;
+  align-items: center;
   color: var(--color-white);
   transition: color 0.3s;
 }

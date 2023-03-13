@@ -6,6 +6,7 @@
         <img src="../../../assets/icons/coinbase.svg" alt="coinbase logo" />
         <img src="../../../assets/icons/dropbox.svg" alt="dropbox logo" />
         <img src="../../../assets/icons/webflow.svg" alt="webflow logo" />
+        <img src="../../../assets/imgs/meta.png" alt="meta logo" />
       </div>
     </div>
   </section>
@@ -19,14 +20,29 @@ export default {
 .section-sponsors {
   padding: 2rem 0;
 }
+
 .sponsors {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  /* justify-content: space-between; */
-  /* place-items: ; */
+  grid-template-columns: repeat(5, 1fr);
+  justify-content: space-between;
+  width: 100%;
+  gap: 2rem;
 }
+
 .sponsors > img {
-  /* width: 100%; */
+  height: 5rem;
+  object-fit: contain;
+  width: 100%;
+}
+.sponsors > img:last-child {
+  margin-left: auto;
+}
+@media (max-width: 585px) {
+  .sponsors {
+    row-gap: 0;
+    text-align: center;
+    place-items: center;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 </style>

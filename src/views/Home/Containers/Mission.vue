@@ -75,7 +75,7 @@ export default {
 }
 @media (max-width: 585px) {
   .section-mission {
-    margin: 5rem 0;
+    margin: 2.5rem 0;
   }
   .mission-text {
     font-size: 1.6rem;

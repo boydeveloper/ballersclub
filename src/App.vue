@@ -45,6 +45,8 @@ export default {
   watch: {
     $route() {
       this.checkRoute();
+      window.scrollTo(0, 0);
+      // window.requestAnimationFrame(this.$route);
     },
   },
 };
@@ -172,7 +174,7 @@ body {
     font-size: 1.6rem;
   }
 }
-@media (max-width: 391px) {
+@media (max-width: 410px) {
   .primary-heading {
     font-size: 3.2rem;
   }

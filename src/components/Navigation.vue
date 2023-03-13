@@ -141,7 +141,7 @@ export default {
   height: 2.5rem;
   width: 2.5rem;
 }
-@media (max-width: 551px) {
+@media (max-width: 585px) {
   .nav-brand:link {
     font-size: 2.5rem;
   }
@@ -163,7 +163,7 @@ export default {
 @media (max-width: 410px) {
   .navbar {
     padding: 1.5rem 0;
-    height: 6rem;
+    height: 7rem;
   }
   .nav-links {
     gap: 1.2rem;

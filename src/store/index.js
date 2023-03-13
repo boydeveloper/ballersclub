@@ -49,8 +49,6 @@ export const store = createStore({
     },
     async setProfileName(state) {
       state.profileName = state.profileUsername;
-      //   .charAt(0).toUpperCase() +
-      // state.profileUsername.slice(1);
     },
     changeUsername(state, payload) {
       state.profileUsername = payload;

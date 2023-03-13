@@ -13,7 +13,9 @@
             creative,<br />
             experienced and beginner ballers.
           </p>
-          <router-link to="/" class="primary-btn">Get Started</router-link>
+          <router-link to="/createballercard" class="primary-btn"
+            >Get Started</router-link
+          >
         </div>
         <div class="hero-img-box">
           <img
