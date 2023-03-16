@@ -13,16 +13,19 @@
           <div class="profile-picture">
             {{ this.$store.state.profileInitials }}
           </div>
+        </div>
+        <div class="profile-header-bottom">
           <div class="profile-details">
             <p>PROFILE</p>
             <h1 class="username" @click="openModal">
               {{ this.$store.state.profileName }}
             </h1>
-            <!-- <p>💎{{ cardsCount }} arts uploaded</p> -->
+            <p>Joined since, April 2023</p>
+            <p>{{ cardsCount }} ARTS UPLOADED.💎</p>
           </div>
-        </div>
-        <div class="profile-header-right">
-          <button @click="logOut" class="primary-btn">Log Out</button>
+          <button @click="logOut" class="primary-btn">
+            <ion-icon name="log-out-outline"></ion-icon>
+          </button>
         </div>
       </div>
       <div class="profile-drops">
@@ -101,15 +104,20 @@ export default {
   display: flex;
   margin-bottom: 6rem;
   width: 100%;
-  /* flex-direction: column; */
-  justify-content: space-between;
+  gap: 1.2rem;
+  flex-direction: column;
+  align-items: left;
+}
+.profile-header-bottom {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .coverPhoto {
   height: 20rem;
   background-size: cover;
   width: 100%;
-  border: 0.2rem solid var(--primary-color);
+  border: 0.4rem solid #fff;
   border-top: 0;
   background-position: 60% 50%;
   background-image: url('../../assets/imgs/ballercoverphoto.jpeg');
@@ -127,6 +135,7 @@ export default {
   height: 15rem;
   width: 15rem;
   display: flex;
+  border: 0.4rem solid #fff;
   align-items: center;
   margin-top: -8rem;
   justify-content: center;
@@ -164,9 +173,22 @@ export default {
 .logout-icon {
   height: 1.8rem;
 }
+.primary-btn {
+  font-size: 4rem;
+}
 .username {
   font-size: 6rem;
   cursor: pointer;
   text-transform: capitalize;
+}
+@media (max-width: 585px) {
+  .username {
+    font-size: 4rem;
+  }
+}
+@media (max-width: 410px) {
+  .username {
+    font-size: 2.2rem;
+  }
 }
 </style>

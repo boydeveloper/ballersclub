@@ -67,7 +67,6 @@ export default {
 
 <style scoped>
 .header {
-  border-bottom: solid 0.3rem var(--primary-color);
   color: var(--color-white);
   font-family: var(--bold-font);
   background-color: var(--dark);
