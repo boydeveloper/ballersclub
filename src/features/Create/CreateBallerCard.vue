@@ -203,6 +203,9 @@ export default {
   .create-card form {
     flex-direction: column-reverse;
   }
+  h1 {
+    text-align: center;
+  }
 }
 @media (max-width: 585px) {
   .createCard-details {

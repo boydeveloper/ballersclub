@@ -1,8 +1,8 @@
 <template>
   <div class="mirror">
     <div class="container">
-      <MyComponent :ballerCardsData="ballerCardsData" />
-      <TopBallers />
+      <FeaturedArts :ballerCardsData="ballerCardsData" />
+      <!-- <TopBallers /> -->
       <h1>All Drops</h1>
       <div class="mirror-arts">
         <BallerCard :ballerCardsData="ballerCardsData" />
@@ -13,10 +13,10 @@
 <script>
 import BallerCard from '../../components/BallerCard';
 import TopBallers from './Containers/TopBallers';
-import MyComponent from './Components/RecentsCarousel.vue';
+import FeaturedArts from './Components/FeaturedArts';
 export default {
   name: 'Mirror',
-  components: { MyComponent, TopBallers, BallerCard },
+  components: { FeaturedArts, TopBallers, BallerCard },
   computed: {
     ballerCardsData() {
       return this.$store.state.ballerCardsData;

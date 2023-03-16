@@ -19,7 +19,7 @@ import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
 import '@splidejs/vue-splide/css/sea-green';
 export default {
-  name: 'MyComponent',
+  name: 'FeaturedArts',
   props: {
     ballerCardsData: Array,
   },
@@ -30,7 +30,7 @@ export default {
 
   computed: {
     topBallers() {
-      return this.$store.state.ballerCardsData.slice(-3);
+      return this.$store.state.ballerCardsData.slice(-4);
     },
   },
 };
