@@ -125,6 +125,9 @@ h1 {
   h1 {
     font-size: 2.2rem;
   }
+  .Ballercards-box > h1 {
+    font-size: 2.8rem;
+  }
   button {
     font-size: 3.5rem;
     padding: 0.2rem 0.5rem;

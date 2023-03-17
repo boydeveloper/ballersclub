@@ -195,7 +195,7 @@ export default {
 }
 @media (max-width: 410px) {
   .username {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
 }
 </style>
