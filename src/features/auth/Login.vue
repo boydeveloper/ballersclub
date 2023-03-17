@@ -9,7 +9,9 @@
             Create now
           </router-link>
         </p>
-        <p class="google-auth">Sign in with google</p>
+        <button class="google-auth" @click.prevent="signinWithGoogle">
+          Sign in with google
+        </button>
         <div class="or-txt">or</div>
       </div>
       <form class="login-form">
@@ -51,7 +53,12 @@
 </template>
 <script>
 import { ref } from 'vue';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
 
 export default {
   name: 'Login',
@@ -79,7 +86,9 @@ export default {
         this.emailErrMsg = '';
       }, 3000);
     },
-
+    signinWithGoogle() {
+      this.$store.dispatch('signinWithGoogle');
+    },
     loginUser() {
       this.validate();
       const auth = getAuth();
@@ -144,15 +153,7 @@ export default {
   text-align: center;
   margin: 1rem 0;
 }
-.google-auth {
-  font-size: 1.4rem;
-  font-weight: 500;
-  padding: 1.2rem;
-  cursor: pointer;
-  margin-top: 1.4rem;
-  box-shadow: 0 0.1rem 0.2rem var(--primary-color);
-  text-align: center;
-}
+
 .login-form label {
   font-size: 1.8rem;
   font-family: var(--bold-font);

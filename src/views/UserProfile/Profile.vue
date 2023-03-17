@@ -20,7 +20,7 @@
             <h1 class="username" @click="openModal">
               {{ this.$store.state.profileName }}
             </h1>
-            <p>Joined since, April 2023</p>
+            <p>Joined since, {{ joinedDate }}.</p>
             <p>{{ cardsCount }} ARTS UPLOADED.💎</p>
           </div>
           <button @click="logOut" class="primary-btn">
@@ -30,8 +30,7 @@
       </div>
       <div class="profile-drops">
         <h1>My Drops</h1>
-        <!-- <div  class="no-drops">
-        </div> -->
+
         <div
           :class="
             ballerCardsData.length === 0
@@ -62,6 +61,7 @@ export default {
   data() {
     return {
       showModal: null,
+      joinedDate: null,
       // drops: [],
     };
   },
@@ -80,7 +80,14 @@ export default {
       this.showModal = false;
     },
   },
+  mounted() {
+    const user = getAuth().currentUser;
+    if (user) {
+      const userJoinedDate = user.metadata.creationTime.slice(8, 16);
 
+      return (this.joinedDate = userJoinedDate);
+    }
+  },
   computed: {
     ballerCardsData() {
       return this.$store.state.ballerCardsData.filter(

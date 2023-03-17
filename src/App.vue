@@ -22,6 +22,7 @@ export default {
       }
     });
     this.$store.commit('setBallerCards');
+
     this.checkRoute();
   },
   data() {
@@ -151,6 +152,20 @@ body {
 }
 .error {
   color: #e03131;
+}
+.google-auth {
+  font-size: 1.4rem;
+  font-weight: 500;
+  padding: 1.2rem;
+  cursor: pointer;
+  margin-top: 1.4rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  width: 100%;
+  box-shadow: 0 0.1rem 0.2rem var(--primary-color);
+  text-align: center;
 }
 @media (max-width: 1061px) {
   .grid--3--cols {

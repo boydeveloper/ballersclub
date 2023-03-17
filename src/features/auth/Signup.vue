@@ -7,6 +7,9 @@
           Have an account?
           <router-link class="auth-link" to="/auth/login">login</router-link>
         </p>
+        <button class="google-auth" @click.prevent="signupWithGoogle">
+          Signup with google
+        </button>
         <div class="error" v-show="error">{{ errorMsg }}</div>
         <div>
           <label for="username">Username</label>
@@ -41,7 +44,9 @@
           <p class="error">{{ passwordErrMsg }}</p>
         </div>
 
-        <button @click.prevent="signup">{{ signupState }}</button>
+        <button class="signup-btn" @click.prevent="signup">
+          {{ signupState }}
+        </button>
       </form>
     </div>
     <div class="form-wrap--right">
@@ -55,15 +60,7 @@
 </template>
 <script>
 import { auth, createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { uuidv4 } from '@firebase/util';
-
 import { db } from '../../firebase/firebaseInit';
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from 'firebase/storage';
 import { serverTimestamp, setDoc, doc } from '@firebase/firestore';
 export default {
   name: 'Signup',
@@ -90,6 +87,9 @@ export default {
       if (this.email.indexOf('.com') !== -1) this.emailErrMsg = '';
       if (this.password.length <= 7)
         this.passwordErrMsg = 'Password Must contain at least 8 characters';
+    },
+    signupWithGoogle() {
+      this.$store.dispatch('signinWithGoogle');
     },
     async signup() {
       setTimeout(() => {
@@ -119,8 +119,8 @@ export default {
           const result = await createUser.user;
           await setDoc(doc(db, 'users', result.uid), {
             username: this.username,
-
             email: this.email,
+            timestamp: serverTimestamp(),
           });
           this.$router.push({ name: 'Home' });
           return;
@@ -177,7 +177,7 @@ export default {
   height: 100vh;
   object-fit: cover;
 }
-.signup-form > button {
+.signup-btn {
   font-family: var(--bold-font);
   padding: 1.2rem;
   font-size: 1.8rem;

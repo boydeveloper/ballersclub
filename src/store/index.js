@@ -1,5 +1,10 @@
 import { async } from '@firebase/util';
-import { getAuth, updateProfile } from 'firebase/auth';
+import {
+  getAuth,
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
 import {
   doc,
   getDoc,
@@ -66,6 +71,18 @@ export const store = createStore({
       } else {
         console.log('No such document!');
       }
+    },
+    signinWithGoogle({ commit }) {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(getAuth(), provider)
+        .then((result) => {
+          const user = result.user;
+          console.log(result.user);
+          this.$router.push('/createballercard');
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
     },
     async updateUsername({ commit, state }) {
       const auth = getAuth();

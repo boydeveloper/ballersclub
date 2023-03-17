@@ -78,6 +78,7 @@ button {
   border: none;
   color: #fff;
 }
+
 .Ballercards-box {
   padding: 4rem 0;
 }
@@ -96,8 +97,8 @@ button {
   gap: 1.5rem;
   align-items: left;
 }
-.baller-info {
-}
+/* .baller-info {
+} */
 .initials-circle {
   background-color: var(--primary-color);
   display: flex;
