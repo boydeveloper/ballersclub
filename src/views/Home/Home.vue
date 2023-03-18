@@ -1,7 +1,7 @@
 <template>
   <Hero />
-  <Sponsors />
   <Recents />
+  <Create />
   <Mission />
   <Join />
 </template>
@@ -12,6 +12,7 @@ import Sponsors from './Containers/Sponsors.vue';
 import Mission from './Containers/Mission';
 import Join from './Containers/Join';
 import Recents from './Containers/Recents';
+import Create from './Containers/Create';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 export default {
   name: 'Home',
@@ -21,6 +22,7 @@ export default {
     Mission,
     Recents,
     Join,
+    Create,
   },
   created() {
     const auth = getAuth();
