@@ -70,7 +70,12 @@ export default {
   color: var(--color-white);
   font-family: var(--bold-font);
   background-color: var(--dark);
+  /* width: 100%;
+  position: fixed;
+  z-index: 3; */
+  /* margin-bottom: 5rem; */
   position: relative;
+  /* box-shadow: 0.1rem 0.2rem 0.3rem #d2d1d4; */
 }
 .navbar {
   display: flex;

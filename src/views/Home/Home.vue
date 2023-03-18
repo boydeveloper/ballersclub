@@ -33,7 +33,6 @@ export default {
       }
     });
     this.$store.commit('setBallerCards');
-    // this.checkRoute();
   },
 };
 </script>
