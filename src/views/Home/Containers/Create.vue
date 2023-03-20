@@ -60,4 +60,9 @@ p {
     width: 100%;
   }
 }
+@media (max-width: 585px) {
+  .create-section {
+    margin: 2.5rem 0;
+  }
+}
 </style>

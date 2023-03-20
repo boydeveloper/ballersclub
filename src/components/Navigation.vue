@@ -70,12 +70,9 @@ export default {
   color: var(--color-white);
   font-family: var(--bold-font);
   background-color: var(--dark);
-  /* width: 100%;
-  position: fixed;
-  z-index: 3; */
+  border-bottom: 0.2rem solid var(--primary-color);
   /* margin-bottom: 5rem; */
   position: relative;
-  /* box-shadow: 0.1rem 0.2rem 0.3rem #d2d1d4; */
 }
 .navbar {
   display: flex;
@@ -172,7 +169,6 @@ export default {
   .nav-links {
     gap: 1.2rem;
     font-weight: 700;
-    font-family: 'Rubik', sans-serif;
   }
   .nav-brand:link {
     font-size: 2.2rem;
