@@ -87,8 +87,6 @@ export default {
     },
     async create() {
       this.validate();
-      console.log('hie');
-
       setTimeout(() => {
         this.twitterErrMsg = '';
         this.usernameErrMsg = '';
@@ -210,6 +208,15 @@ export default {
 @media (max-width: 585px) {
   .createCard-details {
     width: 100%;
+  }
+  .create-card form {
+    padding: 1.2rem 0;
+  }
+  p {
+    font-size: 1.6rem;
+  }
+  h1 {
+    font-size: 2.2rem;
   }
 }
 </style>
