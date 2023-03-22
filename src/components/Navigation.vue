@@ -51,12 +51,6 @@ export default {
       navOpen: false,
     };
   },
-  components: {},
-  computed: {
-    isMobile() {
-      return window.innerWidth < 522;
-    },
-  },
   computed: {
     user() {
       return this.$store.state.user;
@@ -71,7 +65,6 @@ export default {
   font-family: var(--bold-font);
   background-color: var(--dark);
   border-bottom: 0.2rem solid var(--primary-color);
-  /* margin-bottom: 5rem; */
   position: relative;
 }
 .navbar {
@@ -91,9 +84,7 @@ export default {
 }
 .nav-links {
   display: flex;
-
   align-items: center;
-  /* align-items: baseline; */
   gap: 2.5rem;
 }
 .nav-link:link,
@@ -176,7 +167,6 @@ export default {
   .nav-link:link {
     font-size: 1.6rem;
   }
-
   .profile:link,
   .profile:visited {
     font-size: 1.8rem;

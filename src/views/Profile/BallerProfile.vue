@@ -15,7 +15,7 @@
             </div>
           </div>
           <button>
-            <ion-icon name="diamond-outline"></ion-icon>
+            <ion-icon name="diamond-outline" class="diamond"></ion-icon>
           </button>
         </div>
       </div>
@@ -32,7 +32,6 @@
         </div>
       </div>
     </div>
-    <!-- </div> -->
   </div>
 </template>
 <script>
@@ -78,7 +77,9 @@ button {
   border: none;
   color: #fff;
 }
-
+.diamond:hover {
+  color: #80ddff;
+}
 .Ballercards-box {
   padding: 4rem 0;
 }
@@ -87,7 +88,8 @@ button {
   background-size: cover;
   width: 100%;
   border-top: 0;
-  border: #fff 0.4rem solid;
+  border: var(--primary-color) 0.4rem solid;
+  border-top: 0;
   background-position: 60% 50%;
   background-image: url('../../assets/imgs/ballercoverphoto.jpeg');
 }
@@ -97,29 +99,35 @@ button {
   gap: 1.5rem;
   align-items: left;
 }
-/* .baller-info {
-} */
+
 .initials-circle {
-  background-color: var(--primary-color);
+  background-color: var(--dark);
   display: flex;
+  text-shadow: 2px 0 var(--primary-color), -2px 0 var(--primary-color),
+    0 2px var(--primary-color), 0 -2px var(--primary-color),
+    1px 1px var(--primary-color), -1px -1px var(--primary-color),
+    1px -1px var(--primary-color), -1px 1px var(--primary-color);
   gap: 3rem;
   align-items: center;
+  color: var(--dark);
   justify-content: center;
   text-transform: uppercase;
   width: 14.5rem;
   height: 14.5rem;
   font-size: 3.2rem;
   margin-top: -6rem;
-  border: 0.4rem solid #fff;
+  border: 0.4rem solid var(--primary-color);
   border-radius: 50%;
 }
 
 h1 {
   font-size: 4rem;
+  color: var(--primary-color);
   text-transform: capitalize;
 }
 .Ballercards-box > h1 {
   margin-bottom: 4rem;
+  color: #fff;
 }
 @media (max-width: 410px) {
   h1 {

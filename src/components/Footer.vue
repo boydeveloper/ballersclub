@@ -33,8 +33,7 @@ export default {
 
 <style scoped>
 .section-footer {
-  /* font-family: var(--bold-font); */
-  padding: 2.5rem 0 5rem;
+  padding: 2rem 0;
   margin-top: auto;
   border-top: 0.3rem solid var(--primary-color);
 }
@@ -44,7 +43,6 @@ export default {
 .footer {
   display: flex;
   align-items: center;
-  /* gap: 2rem; */
   font-size: 1.8rem;
   justify-content: space-between;
 }
@@ -69,9 +67,6 @@ export default {
   color: rgb(134, 132, 132);
 }
 @media (max-width: 900px) {
-  .footer-brand {
-    /* font-size: 2rem; */
-  }
   .footer-link:link,
   .footer-link:visited {
     font-size: 1.6rem;

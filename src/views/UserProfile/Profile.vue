@@ -124,7 +124,7 @@ export default {
   height: 20rem;
   background-size: cover;
   width: 100%;
-  border: 0.4rem solid #fff;
+  border: 0.4rem solid var(--primary-color);
   border-top: 0;
   background-position: 60% 50%;
   background-image: url('../../assets/imgs/ballercoverphoto.jpeg');
@@ -136,13 +136,17 @@ export default {
   justify-content: center;
 }
 .profile-picture {
-  background-color: var(--primary-color);
+  background-color: var(--dark);
+  text-shadow: 2px 0 var(--primary-color), -2px 0 var(--primary-color),
+    0 2px var(--primary-color), 0 -2px var(--primary-color),
+    1px 1px var(--primary-color), -1px -1px var(--primary-color),
+    1px -1px var(--primary-color), -1px 1px var(--primary-color);
   color: var(--dark);
   border-radius: 50%;
   height: 15rem;
   width: 15rem;
   display: flex;
-  border: 0.4rem solid #fff;
+  border: 0.4rem solid var(--primary-color);
   align-items: center;
   margin-top: -8rem;
   justify-content: center;
