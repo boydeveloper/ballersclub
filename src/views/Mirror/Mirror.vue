@@ -2,9 +2,13 @@
   <div class="mirror">
     <div class="container">
       <FeaturedArts :ballerCardsData="ballerCardsData" />
-      <!-- <TopBallers /> -->
+
       <h1>All Drops</h1>
       <div class="mirror-arts">
+        <CardSkelenton
+          v-if="!ballerCardsData"
+          :ballerCardSkelentons="ballerCardSkelentons"
+        />
         <BallerCard :ballerCardsData="ballerCardsData" />
       </div>
     </div>
@@ -14,12 +18,16 @@
 import BallerCard from '../../components/BallerCard';
 import TopBallers from './Containers/TopBallers';
 import FeaturedArts from './Components/FeaturedArts';
+import CardSkelenton from '../../components/BallerCardSkelenton';
 export default {
   name: 'Mirror',
-  components: { FeaturedArts, TopBallers, BallerCard },
+  components: { FeaturedArts, TopBallers, BallerCard, CardSkelenton },
   computed: {
     ballerCardsData() {
       return this.$store.state.ballerCardsData;
+    },
+    ballerCardSkelentons() {
+      return [1, 2, 3, 4, 5, 6];
     },
   },
 };

@@ -4,6 +4,10 @@
       <div class="recents">
         <span class="primary-heading"> Recent Drops </span>
         <div class="recent-drops grid--3--cols">
+          <CardSkelenton
+            v-if="!ballerCardsData"
+            :ballerCardSkelentons="ballerCardSkelentons"
+          />
           <BallerCard :ballerCardsData="ballerCardsData" />
         </div>
       </div>
@@ -12,12 +16,16 @@
 </template>
 <script>
 import BallerCard from '../../../components/BallerCard';
+import CardSkelenton from '../../../components/BallerCardSkelenton';
 export default {
   name: 'Recents',
-  components: { BallerCard },
+  components: { BallerCard, CardSkelenton },
   computed: {
     ballerCardsData() {
       return this.$store.state.ballerCardsData.slice(0, 6);
+    },
+    ballerCardSkelentons() {
+      return [1, 2, 3, 4, 5, 6];
     },
   },
 };
